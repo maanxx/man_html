@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <title>Exam 2</title>
+     <link rel="stylesheet" href="public/css/icons.min.css" />
+    <style>
+        html{
+            font-size: 62.5%;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        a{
+            text-decoration: none;
+        }
+        h1, h2,h3, h4{
+            margin: 0 0 1rem 0;
+        }
+
+        .border {
+            border: solid 1px #000;
+        }
+
+        .exam2 {
+            display: flex;   
+            gap: 2rem;              
+        }
+        .exam2-imgs{
+            width: 50%;
+            position: relative;
+            font-size: 1rem;
+        }
+        .exam2-imgs_img{
+            width: 100%;
+            border-radius: 2rem;
+        }
+
+        .exam2-imgs_category{
+            position: absolute;
+            top: 2em;
+            left: 2em;
+            background-color: #fff;
+            padding: 0.5em 1.5em;
+            border-radius: 0.5em;
+            font-weight: 700;
+        }
+        .exam2-imgs_category > span{
+            font-size: 1.2em;
+        }
+
+        .exam2-imgs_time{
+            position: absolute;
+            top: 2em;
+            right: 2em;
+            padding: 0.5em 1.5em;
+            border-radius: 3em;
+            background-color: rgba(0, 0, 0,0.2);
+            color: #fff;
+            font-weight: 700;
+            display: none;
+            transition: ease-in-out 0.2ms;
+        }
+
+        .exam2-imgs_time >span{
+            font-size: 1.2em;
+        }
+
+        .exam2-imgs:hover .exam2-imgs_time{
+            display: block;
+        }
+
+
+        .exam2-content{
+            width: 50%;
+        }
+
+        .exam3{
+            margin-top: 5rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+        .exam3-imgs_thumb{
+            position: relative;
+        }
+
+        .exam3-imgs_thumb::before{
+            content: "";
+            display: table;
+            box-sizing: border-box;          
+            padding-bottom: 56.25%;
+        }
+        .exam3-imgs_thumb::after{
+            content: "";
+            position: absolute;
+            top: 50%;
+            right: -1em;
+            transform:  translateY(-50%);
+            width: 1px;
+            height: 10em;
+            background-color: #ddd;
+           
+
+        }
+
+        .exam3-imgs_img{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            border-radius: 2em;
+        }
+
+        .exam3-imgs_img_link{
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+
+        .exam3-imgs_category{
+            position: absolute;
+            top: 2em;
+            left: 2em;
+            padding: 0.5em 1em;
+            background-color: #fff;
+            border-radius: 2em;
+            text-decoration: none;
+        }
+        .exam3-imgs_category >span{
+            font-size: 1.3em;
+            font-weight: 700;
+        }
+
+        .exam3-imgs_time{
+            position: absolute;
+            top: 2em;
+            right: 2em;
+            background-color: rgba(0, 0, 0,0.3);
+            padding: 0.5em 1em;
+            border-radius: 2em;
+            color: #fff;
+            display: none;
+            transition: 2s;
+        }
+
+        .exam3-imgs_thumb:hover > .exam3-imgs_time{
+            display: block;
+        }
+
+        .exam3-imgs_time >i,  .exam3-imgs_time >span{
+            font-size: 1.2em;
+        }
+
+        /* content */
+        .exam3-content{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        .ex3-content-meta{
+            margin-bottom: 1.5em;
+        }
+
+        .ex3-content-meta > a{
+            font-size: 1.4em;
+            color: rgb(0, 0, 255);            
+        }
+
+        .ex3-content-meta > span{
+            font-size: 1.4em;
+            color: #565555;
+        }
+
+        .ex3-content_title{
+            font-size: 1.6em;
+            color: rgb(8, 8, 58);
+        }
+
+        .ex3-content_title:hover{
+            color: #565555;
+        }
+
+        .ex3-content-description{
+            font-size: 1.3em;
+            color: #565555;
+        }
+
+        #ex3-content_more{
+            font-size: 1.6em;
+            padding: 0.5em 1em;
+            border-radius: 0.3em;
+            color: #fff;          
+            background: #0e0ee8;
+            background: linear-gradient(0deg,rgba(14, 14, 232, 1) 0%, rgba(0, 212, 255, 1) 100%);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="exam2 border">
+        <div class="exam2-imgs border">
+            <a href="#" title="">
+                <img class="exam2-imgs_img" src="public/img/demo-image-0032-400x225.webp" alt="">
+            </a>
+            <div class="exam2-imgs_category">
+               <span>Sport</span>
+            </div>
+            <div class="exam2-imgs_time">
+                <i class="exam2-imgs_time_icon">icon</i>
+                <span>18-04-2026</span>
+            </div>
+
+        </div>
+        <div class="exam2-content border">
+            222
+
+        </div>
+    </div>
+
+    <div class="exam3 border">       
+        <div class="exam3-imgs_thumb border">
+            <img class="exam3-imgs_img" src="public/img/demo-image-0032-400x225.webp" alt="">
+            <a class="exam3-imgs_img_link" href="#" title="ten bai viet"></a>
+            <a class="exam3-imgs_category" href="#" title="sport">
+                <span>Sport</span>
+            </a>
+            <div class="exam3-imgs_time">
+                <i class="ri-map-pin-time-line"></i>
+                <span>18-04-2026</span>
+            </div>
+        </div>
+        
+        <div class="exam3-content border">
+            <div class="ex4-content_info">
+                <h4 class="ex3-content-meta border">
+                    <a href="#" title="Văn A"> Văn A</a>
+                    <span> đã đăng ngày 19/04/2026</span>
+                </h4>
+                <h1><a class="ex3-content_title" href="#" title="Bài viết html giới thiệu các thẻ">Bài viết html giới thiệu các thẻ</a></h1>
+                <p class="ex3-content-description">
+                    Understand why data security is a growing concern for business management in today's digital world.
+                </p>
+            </div>
+            <div>
+                <a id="ex3-content_more" href="#" title="Xem Chi tiết">Xem Chi Tiết</a>
+            </div>            
+        </div>
+    </div>
+
+
+    
+</body>
+</html>

@@ -1,0 +1,42 @@
+/* 
+* <576:     xs
+* 576-768:  sm
+* 768-992:  md
+* 992-1200: lg
+* 1200 -1400: xl
+* >= 1400:  xxl
+*/
+
+@media (max-width: 575px){
+   
+
+}
+
+@media (min-width: 576px) and (max-width: 767px){
+
+}
+
+@media (max-width: 767px){ 
+    .container{
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    .postnew{
+        grid-template-columns: 100%;
+    }    
+}
+
+@media (max-width: 991px){
+    html{
+        font-size: 8px;
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+   
+}
+
+
+@media only screen and (min-width: 992px) and (max-width: 1199px){
+
+}

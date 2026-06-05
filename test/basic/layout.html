@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <title>Layout</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        ul{
+            list-style: none;
+        }
+
+        .border{
+            border: 1px solid #000;
+        }
+
+        header, footer{
+            padding: 40px;
+            text-align: center;
+            background-color: aqua;
+        }
+
+        main{
+            display: grid;
+            grid-template-columns: auto 300px;
+            gap: 10px;
+            height: 300px;
+        }
+
+        @media (max-width:767px) {
+            main{
+                grid-template-columns: 1fr;
+            }
+            section{
+                order: 2;
+            }
+            aside{
+                order:1
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <header class="border"> <h1>Header</h1> </header>
+    <main>
+        <section class="border"> Nội dung</section>
+        <aside class="border">
+            <ul>
+                <li>Menu 1</li>
+                <li>menu 2</li>
+                <li>menu 3</li>
+            </ul>
+        </aside>
+    </main>
+    <footer class="border">
+        <p>Footer</p>
+    </footer>
+    
+</body>
+</html>
