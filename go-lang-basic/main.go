@@ -4,6 +4,7 @@ import (
 	"errors"
 	"fmt"
 	"time"
+	"strings"
 	// "unicode/utf8"
 )
 
@@ -155,13 +156,40 @@ func main() {
 	// }
 	
 
-
+/*
 	var n int = 1000000
 	var testSlice = []int{}
 	var testSlice2 = make([]int, 0, n)
 
 	fmt.Printf("Total time without preallocation: %v \n", timeLoop(testSlice, n))
 	fmt.Printf("Total time with preallocation: %v \n", timeLoop(testSlice2, n))
+	*/
+
+	// ------------------------------- String - Rune -------------------------------------------------
+	
+	// ****String
+	// var myString = "résumé"
+	// ****Rune
+	var myString = []rune("résumé")
+	var indexed = myString[0]
+	fmt.Printf("%v and %T\n", indexed, indexed)
+	for i, v:= range myString {
+		fmt.Println(i, v)
+	}
+	fmt.Println(len(myString))
+
+	var myRune = 'a'
+	fmt.Printf("%v", myRune)
+
+	var strSlice = []string{"minh","man"}
+	var strBuilder strings.Builder
+	for i:= range strSlice{
+		strBuilder.WriteString(strSlice[i])
+	}
+	var catStr = strBuilder.String()
+
+	fmt.Printf("\n%v ", catStr)
+	
 }
 
 func timeLoop(slice []int, n int) time.Duration {
