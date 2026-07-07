@@ -1,0 +1,62 @@
+/* 
+* <576:     xs
+* 576-768:  sm
+* 768-992:  md
+* 992-1200: lg
+* 1200 -1400: xl
+* >= 1400:  xxl
+*/
+
+@media (max-width: 575px) {
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+}
+
+@media (max-width: 767px) {
+  .pathology-library__content {
+    grid-template-columns: 1fr;
+  }
+
+  .pathology-library__sidebar {
+    grid-template-columns: 1fr;
+  }
+  .pathology-library__title {
+    font-size: clamp(12px, 1.4vw, 16px);
+  }
+
+  .card__desc {
+    display: none;
+  }
+
+  .card__title {
+    font-size: clamp(12px, 1.4vw, 16px);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+@media (max-width: 991px) {
+  html {
+    font-size: 8px;
+  }
+  .pathology-library__content {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1199px) {
+}
+
+@media only screen and (min-width: 609px) and (max-width: 991px) {
+}
+
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+}

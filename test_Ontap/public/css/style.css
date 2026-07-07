@@ -1,0 +1,176 @@
+:root {
+  --rgb-black: 0, 0, 0;
+  --rgb-dark-green: 1, 131, 129;
+  --rgb-white: 255, 255, 255;
+  --hover-green: #44b556;
+  --red: #950505;
+  --white: #ffffff;
+  --yelow: #ffde00;
+  --dark-green: #018381;
+  --gray: #e6e6e6;
+  --dark-gray: #777777;
+}
+
+/* default */
+.bg-gray {
+  background-color: var(--gray);
+}
+
+.bg-white {
+  background-color: var(--white);
+}
+
+/* frame-container */
+.pathology-library {
+  padding: 2em;
+}
+/* header */
+.pathology-library__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1em;
+}
+
+.pathology-library__title {
+  text-transform: uppercase;
+  color: var(--dark-green);
+  font-size: 2.4rem;
+  margin-bottom: 0;
+}
+
+.pathology-library__view-all {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  color: var(--rgb-black);
+  font-size: 1.4rem;
+  text-decoration: none;
+}
+
+.pathology-library__view-all:hover {
+  color: var(--hover-green);
+}
+
+/* left card */
+.pathology-library__content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2em;
+}
+
+.card {
+  border-top-left-radius: 1em;
+  border-top-right-radius: 1em;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.card__thumb img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+}
+
+.card__body {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  padding: 1em;
+  gap: 1em;
+}
+
+.card__title {
+  font-size: 1.6rem;
+}
+
+.card__desc {
+  font-size: 1.2rem;
+}
+
+.card__info {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1em;
+  margin-top: auto;
+  color: var(--dark-gray);
+}
+
+.card__info__item {
+  display: flex;
+  gap: 0.5em;
+}
+
+/* right card */
+.pathology-library__sidebar {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2em;
+}
+
+/* hpv-section */
+.hpv-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  position: relative;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2em;
+  background: #2a7b9b;
+  background: linear-gradient(
+    90deg,
+    rgba(42, 123, 155, 1) 0%,
+    rgba(87, 199, 133, 1) 100%
+  );
+  margin-top: 5em;
+  border-radius: 2em;
+  gap: 2em;
+}
+
+.hpv-section__left{
+ z-index: 2; 
+}
+.hpv-section__left__header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--white);
+}
+
+.hpv-section__left__header h3 {
+  font-size: 2.4rem;
+}
+
+.hpv-section__left__header h1 {
+  font-size: 3.6rem;
+}
+
+.hpv-section__left__body {
+  display: flex;
+  gap: 2em;
+  margin-top: 1em;
+}
+.hpv-section__left__items {
+  font-size: 1.6em;
+  font-weight: bolder;
+  padding: 2em;
+  background-color: var(--yelow);
+  border-radius: 2em;
+  text-decoration: none;
+  text-align: center;
+}
+
+.hpv-section__right {
+  display: flex;
+  justify-content: center;
+}
+.hpv-section__right__thumb {
+  position: absolute;
+  bottom: 0;
+  z-index: 1;
+  height: 120%;
+  width: auto;
+}
