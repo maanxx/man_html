@@ -1,0 +1,21 @@
+# Binaries (File thực thi sau khi build)
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+bin/
+
+# Test binary, profiling
+*.test
+*.out
+*.prof
+
+# Môi trường (Cực kỳ quan trọng)
+.env
+.env.*
+
+# IDEs and OS
+.idea/
+.vscode/
+.DS_Store
