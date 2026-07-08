@@ -1,10 +1,9 @@
 package main
 
-
 import (
 	"io"
-	"sync"
 	"net/http"
+	"sync"
 
 	"github.com/go-chi/chi/v5"
 	"github.com/sirupsen/logrus"
