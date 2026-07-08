@@ -1,5 +1,29 @@
 package main
 
+/*
+KIẾN THỨC CỐT LÕI VỀ GOROUTINES & CHANNELS TRONG GO
+
+1. Goroutines (go func)
+   - Là các luồng (threads) siêu nhẹ do Go runtime quản lý.
+   - Cách dùng: Thêm từ khóa `go` trước một lời gọi hàm. VD: `go checkPrice()`.
+   - Vấn đề cốt lõi: Hàm main() không chờ các goroutines khác chạy xong. Nếu main() kết thúc, tất cả goroutines cũng bị ép chết theo.
+   
+2. Channels (chan)
+   - Là "đường ống" để các Goroutines giao tiếp và chia sẻ dữ liệu với nhau một cách an toàn.
+   - Khởi tạo: `ch := make(chan string)`
+   - Gửi dữ liệu: `ch <- "data"`
+   - Nhận dữ liệu: `data := <-ch` (Lệnh này sẽ BLOCK/chặn goroutine hiện tại cho đến khi có dữ liệu gửi đến).
+
+3. Select Statement
+   - Dùng để chờ lắng nghe nhiều channel cùng lúc (giống như `switch`, nhưng dành cho channels).
+   - Khi có nhiều channel sẵn sàng gửi/nhận, `select` sẽ chọn ngẫu nhiên một case.
+   - Thường dùng cho Timeout hoặc worker pool.
+
+4. Unbuffered vs Buffered Channel
+   - Unbuffered: `make(chan int)`. Phải có người nhận thì người gửi mới gửi được.
+   - Buffered: `make(chan int, 5)`. Người gửi có thể gửi tối đa 5 phần tử vào ống mà chưa cần có người nhận ngay.
+*/
+
 import (
 	"math/rand"
 	"fmt"
@@ -62,9 +86,6 @@ func sendMessage(chickenChannel chan string, tofuChannel chan string) {
 		time.Sleep(time.Second*1)
 	}
 */
-
-
-
 
 /*
 

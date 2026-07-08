@@ -1,5 +1,28 @@
 package main
 
+/*
+KIẾN THỨC CỐT LÕI VỀ POINTERS, WAITGROUP & MUTEX TRONG GO
+
+1. Pointers (Con trỏ) - '&' và '*'
+   - Bản chất: Là biến đặc biệt lưu "địa chỉ bộ nhớ" của một biến khác.
+   - `&x`: Lấy địa chỉ vùng nhớ của biến `x`.
+   - `*p`: Lấy giá trị đang nằm tại địa chỉ mà con trỏ `p` trỏ tới (Dereference).
+   - Tại sao dùng? 
+     + Để thay đổi trực tiếp giá trị biến gốc truyền vào hàm.
+     + Để tránh phải copy một Struct/Mảng lớn khi truyền qua lại giữa các hàm (giúp tối ưu memory).
+
+2. sync.WaitGroup (Chờ Goroutines)
+   - Dùng để bắt hàm `main()` chờ một nhóm goroutines chạy xong.
+   - `wg.Add(1)`: Báo hiệu có thêm 1 goroutine cần chờ (Nên gọi TRƯỚC KHI gọi chữ `go`).
+   - `wg.Done()`: Báo hiệu goroutine này đã chạy xong (Tương đương Add(-1), thường bỏ trong `defer`).
+   - `wg.Wait()`: Chặn luồng hiện tại cho đến khi bộ đếm WaitGroup về 0.
+
+3. sync.Mutex & sync.RWMutex (Khóa đồng bộ - Tránh Race Condition)
+   - Race Condition: Khi nhiều goroutines cùng đọc/ghi vào một biến chung ở cùng thời điểm -> sai lệch dữ liệu.
+   - Mutex (Lock/Unlock): Đảm bảo tại một thời điểm chỉ có ĐÚNG 1 goroutine được truy cập vào tài nguyên.
+   - RWMutex (RLock/RUnlock): Tối ưu hơn. Cho phép nhiều goroutines CÙNG ĐỌC đồng thời, nhưng chỉ 1 goroutine được GHI (và khi GHI thì cấm mọi luồng ĐỌC/GHI khác).
+*/
+
 import (
 	"fmt"
 	"time"
@@ -88,4 +111,3 @@ func square(thing2 *[5]float64) [5]float64 {
 	}
 	return *thing2
 }
-
