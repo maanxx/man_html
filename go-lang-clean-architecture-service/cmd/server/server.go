@@ -7,6 +7,8 @@ import (
 	"github.com/spf13/cobra"
 	"github.com/teoit/gosctx"
 	"github.com/teoit/gosctx/component/fiberapp"
+	"github.com/teoit/gosctx/component/gormc"
+	"github.com/teoit/gosctx/component/redisc"
 	"github.com/teoit/gosctx/configs"
 )
 
@@ -19,6 +21,8 @@ func newServerServiceCtx() gosctx.ServiceContext {
 	return gosctx.NewServiceContext(
 		gosctx.WithName(serviceName),
 		gosctx.WithComponent(fiberapp.NewFiber(configs.KeyCompFIBER)),
+		gosctx.WithComponent(gormc.NewGormDB(configs.KeyCompGorm,"")),
+		gosctx.WithComponent(redisc.NewRedisc(configs.KeyCompRedis)),
 		gosctx.WithComponent(gosctx.NewAppLoggerDaily(configs.KeyLoggerDaily)),
 	)
 }

@@ -1,9 +1,11 @@
 package cmd
 
 import (
+	"app/cmd/pubsub"
+	"app/cmd/server"
 	"fmt"
 	"os"
-	"app/cmd/server"
+
 	"github.com/spf13/cobra"
 )
 
@@ -20,6 +22,7 @@ var rootCmd = &cobra.Command{
 
 func init() {
 	rootCmd.AddCommand(server.ServerCmd)
+	rootCmd.AddCommand(pubsub.PubSubCmd)
 }
 
 func Execute() {
