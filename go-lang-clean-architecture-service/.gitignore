@@ -1,0 +1,19 @@
+docker/postgres/*
+.env
+
+*.log
+logs/
+
+tmp/
+build/
+
+*.out
+*.coverprofile
+coverage.html
+
+vendor/
+
+# IDE
+.idea/
+.vscode/
+.DS_Store

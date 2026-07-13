@@ -1,0 +1,35 @@
+# Binaries (Các file chạy sau khi build)
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+bin/
+
+# Test binary, profiling, coverage
+*.test
+*.out
+*.prof
+*.coverprofile
+coverage.html
+
+# Môi trường (Cực kỳ quan trọng: Không bao giờ push file .env lên Git)
+.env
+.env.*
+
+# Logs (Nhật ký chạy app)
+*.log
+logs/
+
+# Thư mục tạm và thư mục build (ví dụ khi dùng Air để hot-reload)
+tmp/
+build/
+
+# IDE và OS (Cấu hình riêng của máy và phần mềm code)
+.idea/
+.vscode/
+.DS_Store
+
+# Bỏ qua dữ liệu Database của Docker (nếu có đem thư mục docker qua)
+docker/postgres/
+docker/redis/
