@@ -44,6 +44,7 @@ func canMakeIt(e engine, miles uint8) {
 	}
 }
 
+
 func main(){
 	// var myEngine gasEngine = gasEngine{25, 10, owner{"Man"}}
 	// myEngine.mpg = 20
@@ -60,5 +61,8 @@ func main(){
 
 	fmt.Println(bikeElectric.milesLeft())
 	fmt.Println(bikeGas.milesLeft())
+
+	
+
 	
 }
