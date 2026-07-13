@@ -33,6 +33,7 @@ var PubSubCmd = &cobra.Command{
 
 	logSrv.Info("------------ start server --------------")
 
+
 	if err := serviceCtx.Load(); err != nil{
 		logSrv.Fatal(err)
 	}
