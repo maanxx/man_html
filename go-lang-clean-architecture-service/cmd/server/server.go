@@ -1,6 +1,7 @@
 package server
 
 import (
+	"app/cmd/server/internal"
 	"fmt"
 
 	"github.com/gofiber/fiber/v2"
@@ -52,6 +53,7 @@ var ServerCmd = &cobra.Command{
 		return c.SendString("Hello fen")
 	})
 
+	internal.RoutesServer(appFiber, serviceCtx)
 
 	if err := appFiber.Listen(fmt.Sprintf(":%d", fiberComp.GetPort())); err != nil {
 		logSrv.Fatal(err)
