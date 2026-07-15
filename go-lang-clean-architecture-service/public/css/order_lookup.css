@@ -1,0 +1,52 @@
+.list-group-item {
+  border: 0;
+}
+
+.list-group-item.active {
+  border: 1px solid var(--bs-secondary) !important;
+  border-radius: 3em;
+  background-color: transparent;
+  color: inherit;
+}
+
+.col-7 > div[data-simplebar],
+#product-list {
+  min-height: 320px;
+}
+
+div[data-simplebar] .simplebar-content-wrapper:focus,
+div[data-simplebar] .simplebar-content-wrapper:focus-visible {
+  outline: none !important;
+}
+.custom-scroll-textarea {
+  outline: none !important;
+  padding: 0.375rem 0.75rem;
+  max-height: 75px;
+  resize: none;
+}
+.custom-scroll-textarea::-webkit-scrollbar {
+  width: 6px;
+}
+.custom-scroll-textarea::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+}
+.custom-scroll-textarea::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-textarea-wrapper {
+  transition:
+    border-color 0.15s ease-in-out,
+    box-shadow 0.15s ease-in-out;
+}
+
+.btn-method {
+  transition: box-shadow 0.15s ease;
+}
+
+.btn-method.active {
+  box-shadow: 0 0 0 2.5px #4c7ef3 !important;
+}
+
+

@@ -16,13 +16,11 @@ func SetupRoutesUser(app *fiber.App, serviceCtx gosctx.ServiceContext) {
 	{
 		comp := composers.ComposerUserService(serviceCtx)
 		group.Get("/list", comp.ListUserHdl()).Name("ecommerce.users.list")
-		group.Get("/create", comp.ShowCreateFormHdl())
 	}
 
-	groupApi := app.Group("/admins/users")
+	groupApi := app.Group("/api/admins/users")
 	{
 		comp := composers.ComposerUserService(serviceCtx)
-		groupApi.Post("/create", comp.SubmitCreateFormHdl())
+		groupApi.Get("", comp.ListUserAPIHdl()).Name("ecommerce.users.api.list")
 	}
-	
 }

@@ -1,45 +1,51 @@
 package usecase
 
-import "app/modules/admins/users/entity"
+import (
+	"app/modules/admins/users/entity"
+)
 
 // repo -> usc
 type UserRepo interface {
 	InsertUserRepo(data *entity.User) (*int64, error)
-	ListUserRepo() ([]entity.User, error)
+	ListUserRepo() (*[]entity.User, error)
 	FindUserByID(id int) (*entity.User, error)
 	UpdateUserRepo(id int, data *entity.User) error
 	DeleteUserRepo(id int) error
-
 }
 
 type userUseCase struct {
 	userRepo UserRepo
 }
 
-func NewUserRepo(userRepo UserRepo) *userUseCase {
+func NewUserUsc(userRepo UserRepo) *userUseCase {
 	return &userUseCase{userRepo: userRepo}
 }
 
-	// create
-func (u *userUseCase)InsertUserUsc(data *entity.User) (*int64, error) {
+// create
+func (u *userUseCase) InsertUserUsc(data *entity.User) (*int64, error) {
 	return u.userRepo.InsertUserRepo(data)
 }
-	// read
-func (u *userUseCase)ListUserUsc()([]entity.User, error) {
-	return u.userRepo.ListUserRepo()
+
+// read
+func (u *userUseCase) ListUserUsc() (*[]entity.User, error) {
+	data, err := u.userRepo.ListUserRepo()
+	if err != nil {
+		return nil, err
+	}
+	return data, nil
 }
 
-	// read by id
-func (u *userUseCase)FindUserByIDUsc(id int) (*entity.User, error) {
+// read by id
+func (u *userUseCase) FindUserByIDUsc(id int) (*entity.User, error) {
 	return u.userRepo.FindUserByID(id)
 }
 
-	// update
-func (u *userUseCase)UpdateUserUsc(id int, data *entity.User) error {
+// update
+func (u *userUseCase) UpdateUserUsc(id int, data *entity.User) error {
 	return u.userRepo.UpdateUserRepo(id, data)
 }
 
-	// delete
-func (u *userUseCase)DeleteUserUsc(id int) error {
+// delete
+func (u *userUseCase) DeleteUserUsc(id int) error {
 	return u.userRepo.DeleteUserRepo(id)
 }

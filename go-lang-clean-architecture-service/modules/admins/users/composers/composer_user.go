@@ -2,8 +2,8 @@ package composers
 
 import (
 	"app/modules/admins/users/entity"
-	"app/modules/admins/users/handlers"
 	"app/modules/admins/users/repository"
+	"app/modules/admins/users/transport/handlers"
 	"app/modules/admins/users/usecase"
 
 	"github.com/gofiber/fiber/v2"
@@ -14,8 +14,7 @@ import (
 
 type composerUserHdl interface {
 	ListUserHdl() fiber.Handler
-	ShowCreateFormHdl() fiber.Handler
-	SubmitCreateFormHdl() fiber.Handler	
+	ListUserAPIHdl() fiber.Handler
 }
 
 func ComposerUserService(serviceCtx gosctx.ServiceContext) composerUserHdl {
@@ -25,7 +24,7 @@ func ComposerUserService(serviceCtx gosctx.ServiceContext) composerUserHdl {
 
 	repo := repository.NewUserRepo(db)
 
-	usc := usecase.NewUserRepo(repo)
+	usc := usecase.NewUserUsc(repo)
 
 	hdl := handlers.NewUserHdl(usc)
 
