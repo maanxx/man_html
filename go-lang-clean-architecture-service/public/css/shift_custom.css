@@ -1,0 +1,27 @@
+/*shift - custom */
+.shift-total-row {
+  position: relative;
+  z-index: 1;
+}
+
+.shift-total-row, .shift-total-row td, .shift-total-row th {
+  border-bottom: none !important;
+}
+
+.shift-total-row td {
+  border-top: 1px solid var(--bs-border-color) !important;
+}
+
+.shift-total-row::after {
+  background-color: #f0f6ff;
+  cursor: default;
+  content: "";
+  position: absolute;
+  right: -.6rem;
+  left: -.6rem;
+  top: 0;
+  bottom: 0;
+  z-index: -1;
+  box-shadow:2px 0 6px #00000014;
+  border-radius: .4rem;
+}

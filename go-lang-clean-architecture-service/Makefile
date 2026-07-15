@@ -8,6 +8,6 @@ help:
 .DEFAULT_GOAL := help
 
 server:
-	go run main.go server
+	templ generate && go run main.go server
 pubsub:
 	go run main.go pubsub

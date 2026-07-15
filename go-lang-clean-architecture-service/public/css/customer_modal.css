@@ -1,0 +1,232 @@
+#customerTabContent {
+  overflow: hidden;
+}
+
+#customerTabContent .tab-pane {
+  animation-duration: 0.25s;
+  animation-fill-mode: both;
+  animation-timing-function: ease-out;
+}
+
+#customerTabContent .tab-pane.slide-in-right {
+  animation-name: customerSlideInRight;
+}
+
+#customerTabContent .tab-pane.slide-in-left {
+  animation-name: customerSlideInLeft;
+}
+
+@keyframes customerSlideInRight {
+  from {
+    transform: translateX(40px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes customerSlideInLeft {
+  from {
+    transform: translateX(-40px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+#customerTab .nav-link.active {
+  background-color: #e8f0fe !important;
+  color: #0d6efd !important;
+}
+
+#customerTab .nav-link:not(.active) {
+  background-color: transparent !important;
+  color: #212529 !important;
+}
+
+.custom-focus-ring .form-control,
+.custom-focus-ring .form-select {
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  background-color: #fff;
+  border: 1px solid #ced4da;
+  height: 38px;
+}
+
+.custom-focus-ring .choices__inner {
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  background-color: #fff;
+  border: 1px solid #ced4da;
+  height: 38px !important;
+  min-height: 38px !important;
+  padding: 0 12px !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+.custom-focus-ring .form-control:hover,
+.custom-focus-ring .form-select:hover,
+.custom-focus-ring .choices:hover .choices__inner {
+  border-color: #b1cbfb;
+}
+
+.custom-focus-ring .form-select {
+  cursor: pointer;
+}
+
+.customer-modal-dialog {
+  max-height: 90vh;
+}
+
+.customer-modal-content {
+  height: 680px;
+  max-height: 88vh;
+}
+
+.customer-modal-body {
+  min-height: 0;
+  overflow: hidden;
+}
+
+#customerTabContent {
+  overflow-y: auto;
+  min-height: 0;
+}
+
+.btn-text-pt {
+  padding-top: 1px;
+}
+
+.tier-card-bg {
+  background-image:
+    radial-gradient(
+      104.16% 43.54% at 50% 95.77%,
+      rgba(58, 191, 248, 0.75) 0%,
+      rgba(3, 105, 160, 0.9) 100%
+    ),
+    url("/static/img/royalty.svg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.tier-card-overlay {
+  background: rgba(0, 0, 0, 0.2);
+}
+.tier-icon-wrapper {
+  width: 32px;
+  height: 32px;
+  background-color: rgba(255, 255, 255, 0.15);
+}
+.tier-benefit-btn {
+  width: 40px;
+  height: 40px;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+.tier-points-badge {
+  background-color: #ffda6a;
+}
+.tier-progress-box {
+  background-color: rgba(0, 0, 0, 0.15);
+}
+.tier-progress-bar-bg {
+  height: 4px;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+.tier-progress-star {
+  width: 24px;
+  height: 24px;
+  background-color: rgba(255, 255, 255, 0.5);
+  right: -12px;
+  top: -10px;
+}
+
+.benefits-popover {
+  right: 15px;
+  top: 100%;
+  transform: translateY(-40px);
+  width: 500px;
+  z-index: 1050;
+}
+.benefit-icon-box {
+  width: 40px;
+  height: 40px;
+}
+.benefit-icon-box.next-tier {
+  background-color: #adb5bd !important;
+}
+
+.stats-timeline-width {
+  width: 130px;
+}
+.stats-timeline-label {
+  width: 130px;
+  padding-top: 3px;
+}
+.stats-timeline-dot {
+  width: 14px;
+  height: 14px;
+  margin-top: 2px;
+  z-index: 1;
+  position: relative;
+}
+
+.tab-pane-scrollable {
+  max-height: 400px;
+}
+
+.badge-status-pending {
+  background-color: #fef1db;
+}
+
+.badge-status-primary {
+  background-color: #e8f0fe;
+  color: #0d6efd;
+}
+
+.address-radio {
+  border-width: 3px;
+}
+
+.address-text-title {
+  font-size: 15px;
+}
+
+.custom-focus-ring .form-control:focus,
+.custom-focus-ring .form-select:focus,
+.custom-focus-ring .choices.is-focused .choices__inner {
+  background-color: #fff;
+  border-color: #86b7fe;
+  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.15) !important;
+}
+#discountModal .nav-pills .nav-link.active,
+#discountModal .nav-pills .show > .nav-link {
+  background-color: #f3f6f9 !important;
+  color: #0d6efd !important;
+}
+#discountModal .nav-pills .nav-link:not(.active) {
+  color: #878a99 !important;
+}
+
+#discountModal .btn-check:checked + .btn-outline-secondary {
+  background-color: #fff !important;
+  color: #212529 !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+#discountModal .btn-check:not(:checked) + .btn-outline-secondary {
+  background-color: transparent !important;
+  color: #878a99 !important;
+}
+
+.select-all .choices__inner {
+  display: flex !important;
+  align-items: center !important;
+}
+
+.select-all .choices__list--single .choices__item {
+  color: #212529 !important;
+}

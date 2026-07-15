@@ -1,0 +1,36 @@
+.filepond--file-action-button.filepond--action-remove-item {
+    display: none !important; 
+}
+
+.filepond-custom-overlay {
+    position: absolute;
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%;
+    background: rgba(0,0,0,0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    border-radius: 0.45em;
+    box-sizing: border-box;
+    z-index: 10;
+}
+
+.filepond--item:hover .filepond-custom-overlay {
+    opacity: 1;
+}
+
+.filepond-custom-overlay i {
+    color: white;
+    font-size: 28px;
+    margin: 0 10px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.filepond-custom-overlay i:hover {
+    transform: scale(1.1);
+}

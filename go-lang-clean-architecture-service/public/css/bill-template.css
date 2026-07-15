@@ -1,0 +1,110 @@
+.choices:has(select[data-search="false"])
+  .choices__list--dropdown
+  .choices__input--cloned {
+  display: none !important;
+}
+
+.choices__list--single,
+.choices__list--single .choices__item {
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.choices__list--dropdown .choices__list {
+  max-height: 160px !important;
+  overflow-y: auto !important;
+}
+
+.choices__list--dropdown .choices__item {
+  border-radius: 6px;
+  margin-bottom: 2px;
+  white-space: nowrap !important;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 14px;
+  font-weight: 400 !important;
+}
+
+.choices__list--dropdown .choices__item--selectable.is-highlighted,
+.choices__list--dropdown .choices__item--selectable:hover {
+  background-color: #f1f5f9 !important;
+}
+
+.choices__list--dropdown .choices__item--choice.is-selected {
+  background-color: rgba(94, 163, 203, 0.15) !important;
+  color: #5ea3cb;
+}
+
+.bill-template-wrapper .choices.is-open .choices__inner {
+  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.15) !important;
+}
+
+.bill-template-wrapper .choices__inner {
+  border: 1px solid #dee2e6 !important;
+  border-radius: 5px !important;
+  background-color: #fff;
+  height: 38px !important;
+  min-height: 38px !important;
+  display: flex;
+  align-items: center;
+}
+
+.bill-template-wrapper .choices__list--single .choices__item {
+  color: #212529 !important;
+}
+
+.custom-textarea-wrapper {
+  border: 1px solid #dee2e6;
+  transition: all 0.15s ease-in-out;
+}
+
+.custom-textarea-wrapper:focus-within {
+  border-color: #86b7fe;
+  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+
+#billHtmlEditor {
+  width: 100%;
+  min-height: 100%;
+  resize: none;
+  overflow: hidden;
+}
+
+#emptySearchStores,
+.bill-preview-fullscreen .configuration-navigate,
+.bill-preview-fullscreen .configuration-header,
+.bill-preview-fullscreen .bill-page-title,
+.bill-preview-fullscreen .bill-page-desc,
+.bill-preview-fullscreen .left-side,
+.bill-preview-fullscreen .right-side-title {
+  display: none !important;
+}
+
+.bill-preview-fullscreen .bill-page-cat {
+  border-top: none !important;
+}
+
+.bill-preview-fullscreen .right-side {
+  width: 100% !important;
+  margin-top: 0 !important;
+}
+
+.page-item:first-child .page-link {
+  border-top-left-radius: 1em;
+  border-bottom-left-radius: 1em;
+}
+
+.page-item:last-child .page-link {
+  border-top-right-radius: 1em;
+  border-bottom-right-radius: 1em;
+}
+
+.table-fixed {
+  table-layout: fixed;
+}
+
+#slideshow_group_datatable > :not(caption) > * > * {
+  padding: 1rem;
+}
