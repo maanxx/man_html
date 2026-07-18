@@ -21,10 +21,10 @@ type User struct {
 	Status       int             `json:"status"`
 	Permission   json.RawMessage `json:"permission"`
 	IsPermission int             `json:"is_permission"`
-	RoleID       int64           `json:"-" gorm:"column:role_id;"`
+	RoleID       *int64           `json:"-" gorm:"column:role_id;"`
 	RoleFake     *core.UID       `json:"role_id" gorm:"-"`
-	CreatedBy    int64           `json:"created_by"`
-	UpdatedBy    int64           `json:"updated_by"`
+	CreatedBy    *int64           `json:"created_by"`
+	UpdatedBy    *int64           `json:"updated_by"`
 	// Role         *Role           `gorm:"foreignKey:RoleID"`
 	UserCreated  *User           `gorm:"foreignKey:CreatedBy"`
 	UserUpdated  *User           `gorm:"foreignKey:UpdatedBy"`

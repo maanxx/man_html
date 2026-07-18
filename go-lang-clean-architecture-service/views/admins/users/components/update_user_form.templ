@@ -1,0 +1,76 @@
+package components
+
+import "app/modules/admins/users/entity"
+
+templ UpdateUserTempl(user *entity.User) {
+	<div class="row">
+		<div class="col-xl-3 col-lg-4">
+			<div class="card mb-4">
+				<div class="card-body text-center">
+					<div class="mb-3">
+						<img src="/static/images/users/user-dummy-img.jpg" class="rounded-circle avatar-lg img-thumbnail" alt="User Image" style="width: 120px; height: 120px; object-fit: cover;"/>
+					</div>
+					<h5 class="mb-1" id="display_full_name">User Name</h5>
+				</div>
+			</div>
+			<div class="card mb-4">
+				<div class="card-body">
+					<div class="mb-2"><i class="bx bx-user me-2"></i> Created by : Super Admin</div>
+					<div class="mb-2"><i class="bx bx-calendar me-2"></i> Created : 2026-05-14 14:54</div>
+					<div class="mb-2"><i class="bx bx-calendar-check me-2"></i> Updated : 2026-05-14 14:54</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-xl-9 col-lg-8">
+			<div class="card">
+				<div class="card-header">
+					<ul class="nav nav-tabs card-header-tabs" role="tablist">
+						<li class="nav-item">
+							<a class="nav-link active" data-bs-toggle="tab" href="#personalDetails" role="tab">Personal Details</a>
+						</li>
+					</ul>
+				</div>
+				<div class="card-body">
+					<div class="tab-content">
+						<div class="tab-pane active" id="personalDetails" role="tabpanel">
+							<form id="form_update_user">
+								<div class="row g-3">
+									<div class="col-lg-6">
+										<label class="form-label">Last name <span class="text-danger">*</span></label>
+										<input type="text" class="form-control" name="last_name" value={ user.LastName } placeholder="Nhập họ" required/>
+									</div>
+									<div class="col-lg-6">
+										<label class="form-label">First name <span class="text-danger">*</span></label>
+										<input type="text" class="form-control" name="first_name" value={ user.FirstName } placeholder="Nhập tên" required/>
+									</div>
+									<div class="col-lg-6">
+										<label class="form-label">Email <span class="text-danger">*</span></label>
+										<input type="email" class="form-control" name="email" value={ user.Email } placeholder="Nhập email" required/>
+									</div>
+									<div class="col-lg-6">
+										<label class="form-label">Status <span class="text-danger">*</span></label>
+										<div class="d-flex gap-3 mt-1">
+											<div class="form-check">
+												<input class="form-check-input" type="radio" name="status" id="statusActive" value="1" checked/>
+												<label class="form-check-label" for="statusActive">Active</label>
+											</div>
+											<div class="form-check">
+												<input class="form-check-input" type="radio" name="status" id="statusInactive" value="2"/>
+												<label class="form-check-label" for="statusInactive">Inactive</label>
+											</div>
+										</div>
+									</div>
+									<input id="user_id" type="hidden" class="form-control" name="id" value={ user.ID }/>
+									<div class="col-12 text-end mt-4">
+										<button type="button" class="btn btn-light me-2">Cancel</button>
+										<button type="submit" class="btn btn-primary" id="btn-submit-update">Update</button>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+}

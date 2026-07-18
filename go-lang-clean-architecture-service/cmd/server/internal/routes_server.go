@@ -10,6 +10,7 @@ import (
 )
 
 func RoutesServer(app *fiber.App, serviceCtx gosctx.ServiceContext) {
+
 	users.SetupRoutesUser(app, serviceCtx)
 	app.Static("/static", fmt.Sprintf("./%s", conf.UploadPathPublic))
 }

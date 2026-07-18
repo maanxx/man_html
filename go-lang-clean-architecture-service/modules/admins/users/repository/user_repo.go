@@ -3,6 +3,7 @@ package repository
 import (
 	"app/modules/admins/users/entity"
 
+	"github.com/teoit/gosctx/component/errs"
 	"gorm.io/gorm"
 )
 
@@ -26,7 +27,7 @@ func (s *userRepo) InsertUserRepo(data *entity.User) (*int64, error) {
 }
 
 // read
-func (s *userRepo) ListUserRepo() (*[]entity.User, error) {
+func (s *userRepo) FindUserRepo() (*[]entity.User, error) {
 	var users []entity.User
 
 	result := s.db.Table(entity.User{}.TableName()).Find(&users)
@@ -35,11 +36,15 @@ func (s *userRepo) ListUserRepo() (*[]entity.User, error) {
 		return nil, result.Error
 	}
 
+	if result.RowsAffected == 0 {
+		return nil, errs.ErrDataNotFound
+	}
+
 	return &users, nil
 }
 
 // read by id
-func (s *userRepo) FindUserByID(id int) (*entity.User, error) {
+func (s *userRepo) FindOneUserRepo(id int) (*entity.User, error) {
 	var user entity.User
 
 	result := s.db.Table(entity.User{}.TableName()).Where("id=?", id).First(&user)
@@ -55,12 +60,16 @@ func (s *userRepo) FindUserByID(id int) (*entity.User, error) {
 func (s *userRepo) UpdateUserRepo(id int, data *entity.User) error {
 	result := s.db.Table(entity.User{}.TableName()).Where("id=?", id).Updates(data)
 
-	return result.Error
+	if result.Error != nil {
+		return result.Error
+	}
+
+	return nil
 }
 
 // delete
-func (s *userRepo) DeleteUserRepo(id int) error {
-	result := s.db.Table(entity.User{}.TableName()).Where("id=?", id).Delete(&entity.User{})
+func (s *userRepo) DeleteUserRepo(ids []int) error {
+	result := s.db.Table(entity.User{}.TableName()).Where("id IN ?", ids).Delete(&entity.User{})
 
 	return result.Error
 }

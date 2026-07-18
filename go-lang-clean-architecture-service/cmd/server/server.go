@@ -52,7 +52,7 @@ var ServerCmd = &cobra.Command{
 	appFiber.Get("/", func(c *fiber.Ctx) error {
 		return c.SendString("Hello fen")
 	})
-
+	
 	internal.RoutesServer(appFiber, serviceCtx)
 
 	if err := appFiber.Listen(fmt.Sprintf(":%d", fiberComp.GetPort())); err != nil {

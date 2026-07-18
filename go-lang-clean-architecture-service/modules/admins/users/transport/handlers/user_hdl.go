@@ -4,54 +4,46 @@ import (
 	"app/modules/admins/users/entity"
 	"app/pkg/golangviet/templates"
 	"app/views/admins/users"
+	"app/views/pages"
+	"strconv"
 
 	"github.com/gofiber/fiber/v2"
 )
 
-type UserUsc interface {
-	InsertUserUsc(data *entity.User) (*int64, error)
-	ListUserUsc() (*[]entity.User, error)
-	FindUserByIDUsc(id int) (*entity.User, error)
-	UpdateUserUsc(id int, data *entity.User) error
-	DeleteUserUsc(id int) error
+type userUsc interface {
+	FindOneUserUsc(id int) (*entity.User, error)
 }
 
 type userHdl struct {
-	userUsc UserUsc
+	userUsc userUsc
 }
 
-func NewUserHdl(userUsc UserUsc) *userHdl {
+func NewUserHdl(userUsc userUsc) *userHdl {
 	return &userHdl{userUsc: userUsc}
 }
 
-func (h *userHdl) ListUserHdl() fiber.Handler {
-	return func(c *fiber.Ctx) error{
+func (u *userHdl) FindUserHdl() fiber.Handler {
+	return func(c *fiber.Ctx) error {
 		return templates.Render(c, users.Index())
 	}
 }
-func (h *userHdl) ListUserAPIHdl() fiber.Handler {
+
+func (u *userHdl) UpdateUserViewHdl() fiber.Handler {
 	return func(c *fiber.Ctx) error {
-		draw := c.QueryInt("draw", 1)
+		idStr := c.Params("id")
 
-		users, err := h.userUsc.ListUserUsc()
+		id, err := strconv.Atoi(idStr)
 
-		if err != nil {
-			return c.Status(500).JSON(fiber.Map{"error": err.Error()})
+		if err != nil || id <= 0 {
+			return templates.Render(c, pages.NotFound404("/admins/users/list"))
 		}
 
-		totalRecords := 0
+		detailUser, err := u.userUsc.FindOneUserUsc(id)
 
-		if users != nil {
-			totalRecords = len(*users)
+		if err != nil || detailUser == nil {
+			return templates.Render(c, pages.ErrorUserPage("Người dùng bạn tìm kiếm không tồn tại hoặc đã bị xóa!", "/admins/users/list"))
 		}
 
-		// return c.SendString("Hello Handler")
-		// return templates.Render(c, users.Index())
-		return c.JSON(fiber.Map{
-			"draw":            draw,
-			"recordsTotal":    totalRecords,
-			"recordsFiltered": totalRecords,
-			"data":            users,
-		})
+		return templates.Render(c, users.UpdateUser(detailUser))
 	}
 }

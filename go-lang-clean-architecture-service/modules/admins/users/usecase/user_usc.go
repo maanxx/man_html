@@ -6,11 +6,11 @@ import (
 
 // repo -> usc
 type UserRepo interface {
-	InsertUserRepo(data *entity.User) (*int64, error)
-	ListUserRepo() (*[]entity.User, error)
-	FindUserByID(id int) (*entity.User, error)
-	UpdateUserRepo(id int, data *entity.User) error
-	DeleteUserRepo(id int) error
+	// InsertUserRepo(data *entity.User) (*int64, error)
+	FindUserRepo() (*[]entity.User, error)
+	FindOneUserRepo(id int) (*entity.User, error)
+	// UpdateUserRepo(id int, data *entity.User) error
+	// DeleteUserRepo(id int) error
 }
 
 type userUseCase struct {
@@ -22,13 +22,13 @@ func NewUserUsc(userRepo UserRepo) *userUseCase {
 }
 
 // create
-func (u *userUseCase) InsertUserUsc(data *entity.User) (*int64, error) {
-	return u.userRepo.InsertUserRepo(data)
-}
+// func (u *userUseCase) InsertUserUsc(data *entity.User) (*int64, error) {
+// 	return u.userRepo.InsertUserRepo(data)
+// }
 
 // read
-func (u *userUseCase) ListUserUsc() (*[]entity.User, error) {
-	data, err := u.userRepo.ListUserRepo()
+func (u *userUseCase) FindUserUsc() (*[]entity.User, error) {
+	data, err := u.userRepo.FindUserRepo()
 	if err != nil {
 		return nil, err
 	}
@@ -36,16 +36,16 @@ func (u *userUseCase) ListUserUsc() (*[]entity.User, error) {
 }
 
 // read by id
-func (u *userUseCase) FindUserByIDUsc(id int) (*entity.User, error) {
-	return u.userRepo.FindUserByID(id)
+func (u *userUseCase) FindOneUserUsc(id int) (*entity.User, error) {
+	return u.userRepo.FindOneUserRepo(id)
 }
 
-// update
-func (u *userUseCase) UpdateUserUsc(id int, data *entity.User) error {
-	return u.userRepo.UpdateUserRepo(id, data)
-}
+// // update
+// func (u *userUseCase) UpdateUserUsc(id int, data *entity.User) error {
+// 	return u.userRepo.UpdateUserRepo(id, data)
+// }
 
-// delete
-func (u *userUseCase) DeleteUserUsc(id int) error {
-	return u.userRepo.DeleteUserRepo(id)
-}
+// // delete
+// func (u *userUseCase) DeleteUserUsc(id int) error {
+// 	return u.userRepo.DeleteUserRepo(id)
+// }
