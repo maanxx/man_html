@@ -1,0 +1,31 @@
+package users
+
+import (
+	"app/modules/admins/users/entity"
+	"app/pkg/golangviet/templates"
+	"app/views/admins/users/components"
+	"app/views/layouts"
+)
+
+templ UpdateUser(user *entity.User) {
+	@layouts.Master(&[]templ.Component{head()}, scriptSlotUpdate()) {
+		<div class="row">
+			<div class="col-12">
+				<div class="page-title-box d-sm-flex align-items-center justify-content-between">
+					<h4 data-key="t-user">USERS</h4>
+					<div class="page-title-right">
+						<ol class="breadcrumb m-0">
+							<li class="breadcrumb-item"><a href="javascript: void(0);" data-key="t-users">Users</a></li>
+							<li class="breadcrumb-item active" data-key="t-edit">Edit</li>
+						</ol>
+					</div>
+				</div>
+			</div>
+		</div>
+		@components.UpdateUserTempl(user)
+	}
+}
+
+templ scriptSlotUpdate() {
+	<script type="module" src={ templates.AssetURL("/static/js/admins/users/user_update.js") }></script>
+}

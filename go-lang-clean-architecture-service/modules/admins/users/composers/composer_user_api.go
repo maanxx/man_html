@@ -3,7 +3,7 @@ package composers
 import (
 	"app/modules/admins/users/entity"
 	"app/modules/admins/users/repository"
-	"app/modules/admins/users/transport/handlers"
+	"app/modules/admins/users/transport/api"
 	"app/modules/admins/users/usecase"
 
 	"github.com/gofiber/fiber/v2"
@@ -12,22 +12,23 @@ import (
 	"github.com/teoit/gosctx/configs"
 )
 
-type composerUserHdl interface {
-	FindUserHdl() fiber.Handler
-	UpdateUserViewHdl() fiber.Handler
+type composerUserApi interface {
+	FindUserApi() fiber.Handler
+	InsertUserApi() fiber.Handler
+	UpdateUserApi() fiber.Handler
+	DeleteUserApi() fiber.Handler
 }
 
-func ComposerUserService(serviceCtx gosctx.ServiceContext) composerUserHdl {
-
+func ComposerUserApiService(serviceCtx gosctx.ServiceContext) composerUserApi {
 	db := serviceCtx.MustGet(configs.KeyCompGorm).(gormc.GormComponent).GetDB()
 
 	db.AutoMigrate(&entity.User{})
 
 	repo := repository.NewUserRepo(db)
 
-	usc := usecase.NewUserUsc(repo)
+	uscApi := usecase.NewUserApiUsc(repo)
 
-	hdl := handlers.NewUserHdl(usc)
+	api := api.NewUserApi(uscApi)
 
-	return hdl
+	return api
 }

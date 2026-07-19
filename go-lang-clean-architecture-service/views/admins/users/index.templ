@@ -2,6 +2,7 @@ package users
 
 import (
 	"app/pkg/golangviet/templates"
+	"app/views/admins/users/components/modals"
 	"app/views/layouts"
 )
 
@@ -56,22 +57,24 @@ templ Index() {
 						<div class="card-body pt-2">
 							<div>
 								<div class="table-responsive table-card mb-1">
-									<table class="table table-hover align-middle m-0" id="user_table" data-domain={templates.AssetURL("")}
-										style="min-height: 200px;width:100%">
+									<table
+										class="table table-hover align-middle m-0"
+										id="user_table"
+										data-domain={ templates.AssetURL("") }
+										style="min-height: 200px;width:100%"
+									>
 										<thead class="table-light text-muted">
 											<tr class="text-uppercase">
 												<th style="width: 20px;">
 													<div class="form-check">
-														<input class="form-check-input" type="checkbox" id="checkAll" value="option">
+														<input class="form-check-input" type="checkbox" id="checkAll" value="option"/>
 													</div>
 												</th>
 												<th data-key="t-action">Action</th>
 												<th class="text-left">NO.</th>
 												<th>Avatar</th>
-												<th data-key="t-fullname">Full name</th>    
-												<th data-key="t-role">Role</th>                                                                            
+												<th data-key="t-fullname">Full name</th>
 												<th data-key="t-status">Status</th>
-												<th data-key="t-audit-info">Audit Info</th>
 											</tr>
 										</thead>
 									</table>
@@ -83,6 +86,10 @@ templ Index() {
 			</div>
 			// @components.InfoUserRight()
 		</div>
+		<div>
+			@modals.CreateUserModal()
+			@modals.DeleteUserModal()
+		</div>
 	}
 }
 
@@ -92,7 +99,7 @@ templ head() {
 
 templ scriptSlot() {
 	<script type="text/javascript" src={ templates.AssetURL("/static/themes/libs/datatables/datatables.min.js") } defer></script>
-	<script type="module" src={ templates.AssetURL("/static/js/admins/users/list.js") }></script>
-	// <script type="module" src={templates.AssetURL("/static/js/admins/users/list.js")}></script>
-	// <script type="module" src={templates.AssetURL("/static/js/admins/users/create.js")}></script>
+	<script type="module" src={ templates.AssetURL("/static/js/admins/users/user_list.js") }></script>
+	<script type="module" src={ templates.AssetURL("/static/js/admins/users/user_create.js") }></script>
+	<script type="module" src={ templates.AssetURL("/static/js/admins/users/user_delete.js") }></script>
 }
