@@ -18,7 +18,7 @@ func MapperDatatable(users *[]entity.User) *[]respones.DataTableUserResp {
 			ID:     v.ID,
 			Name:   v.FullName,
 			Avatar: v.Image,
-			Custom: fmt.Sprintf(`<a href="/admins/users/edit/%d" class="btn btn-sm btn-soft-info edit-btn"><i class="ri-pencil-fill"></i></a>
+			Custom: fmt.Sprintf(`<a id="delete-item-btn" href="/admins/users/edit/%d" class="btn btn-sm btn-soft-info edit-btn"><i class="ri-pencil-fill"></i></a>
                     <button class="btn btn-sm btn-soft-danger delete-btn" data-id="%d"><i class="ri-delete-bin-fill"></i></button>`, v.ID, v.ID),
 		}
 

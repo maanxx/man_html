@@ -9,6 +9,7 @@ require (
 	github.com/joho/godotenv v1.5.1
 	github.com/spf13/cobra v1.10.2
 	github.com/teoit/gosctx v0.1.1
+	go.mongodb.org/mongo-driver v1.17.4
 	gorm.io/gorm v1.30.1
 )
 

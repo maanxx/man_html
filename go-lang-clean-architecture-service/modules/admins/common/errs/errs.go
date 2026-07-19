@@ -5,6 +5,7 @@ import "errors"
 var (
 	ErrRecordNotFound   = errors.New("Record not found")
 	ReturnErrsForApi = errors.New("Invalidate ID")
+	ErrIDUserValidate = errors.New("Invalidate ID user")
 	ErrDataNotFound = errors.New("Invalidate Data")
 	ErrInternalServer = errors.New("Internal server error, try again later!")
 	ErrCreateUserFailed = errors.New("Create user failed")

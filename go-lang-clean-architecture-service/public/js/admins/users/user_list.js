@@ -1,3 +1,7 @@
+import { checkBtnDatatable } from "/static/js/components/templates.js";
+
+import { ischeckboxcheck } from "/static/js/common/helpers.js";
+
 var user_dt;
 
 const userList = function () {
@@ -18,13 +22,8 @@ const userList = function () {
       },
       columns: [
         {
-          data: "id",
-          orderable: false,
-          searchable: false,
-          render: function (data) {
-            return `<div class="form-check">
-                      <input class="form-check-input user-checkbox" type="checkbox" value="${data}">
-                    </div>`;
+          render: function (data, type, row) {
+            return checkBtnDatatable(row.id);
           },
         },
         {
@@ -61,42 +60,37 @@ const userList = function () {
         },
       ],
     });
-    
-    const checkAll = document.getElementById("checkAll");
-    const removeBtn = document.getElementById("remove-actions");
-    if (removeBtn) removeBtn.style.display = "none";
+
+    var checkAll = document.getElementById("checkAll");
 
     if (checkAll) {
-      checkAll.addEventListener("change", function () {
-        const checkboxes = document.querySelectorAll(".user-checkbox");
-        checkboxes.forEach((cb) => {
-          cb.checked = checkAll.checked;
-          if (cb.checked) {
-            cb.closest("tr").classList.add("table-active");
+      checkAll.onclick = function () {
+        var checkboxes = document.querySelectorAll(
+          '.form-check-all input[type="checkbox"]',
+        );
+        var checkedCount = document.querySelectorAll(
+          '.form-check-all input[type="checkbox"]:checked',
+        ).length;
+
+        for (var i = 0; i < checkboxes.length; i++) {
+          checkboxes[i].checked = this.checked;
+
+          if (checkboxes[i].checked) {
+            checkboxes[i].closest("tr").classList.add("table-active");
           } else {
-            cb.closest("tr").classList.remove("table-active");
+            checkboxes[i].closest("tr").classList.remove("table-active");
           }
-        });
-        toggleRemoveBtn();
-      });
+        }
+        document.getElementById("remove-actions").style.display =
+          checkedCount > 0 ? "none" : "block";
+      };
     }
 
-    $(document).on("change", ".user-checkbox", function () {
-      if (this.checked) {
-        this.closest("tr").classList.add("table-active");
-      } else {
-        this.closest("tr").classList.remove("table-active");
-        if (checkAll) checkAll.checked = false;
-      }
-      toggleRemoveBtn();
+    $("#user_table").on("click", function (evt) {
+      ischeckboxcheck();
     });
 
-    function toggleRemoveBtn() {
-      const checkedCount = document.querySelectorAll(".user-checkbox:checked").length;
-      if (removeBtn) {
-        removeBtn.style.display = checkedCount > 0 ? "block" : "none";
-      }
-    }
+    
   };
   return {
     init: function () {

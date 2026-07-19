@@ -70,6 +70,5 @@ func (s *userRepo) UpdateUserRepo(id int, data *entity.User) error {
 // delete
 func (s *userRepo) DeleteUserRepo(ids []int) error {
 	result := s.db.Table(entity.User{}.TableName()).Where("id IN ?", ids).Delete(&entity.User{})
-
 	return result.Error
 }
