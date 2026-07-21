@@ -83,7 +83,7 @@ func UpdateUserTempl(user *entity.User) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "\"><div class=\"col-12 text-end mt-4\"><button type=\"button\" class=\"btn btn-light me-2\">Cancel</button> <button type=\"submit\" class=\"btn btn-primary\" id=\"btn-submit-update\">Update</button></div></div></form></div></div></div></div></div></div>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "\"><div class=\"col-12 text-end mt-4\"><a href=\"/admins/users/list\" class=\"btn btn-light me-2\">Cancel</a> <button type=\"submit\" class=\"btn btn-primary\" id=\"btn-submit-update\">Update</button></div></div></form></div></div></div></div></div></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

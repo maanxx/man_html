@@ -28,6 +28,7 @@ func SetupRoutesUser(app *fiber.App, serviceCtx gosctx.ServiceContext) {
 		groupApi.Post("/datatable", comp.FindUserApi()).Name("ecommerce.users.api.list")
 		groupApi.Post("/create", comp.InsertUserApi())
 		groupApi.Post("/edit", comp.UpdateUserApi())
-		groupApi.Post("/delete", comp.DeleteUserApi())
+		groupApi.Delete("/delete", comp.DeleteUserApi())
+		groupApi.Patch("/update-status", comp.ChangeStatusApi())
 	}
 }

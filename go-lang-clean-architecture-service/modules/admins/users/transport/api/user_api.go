@@ -12,6 +12,7 @@ type userApiUsc interface {
 	FindUserApiUsc() (*[]respones.DataTableUserResp, error)
 	InsertUserApiUsc(req *requests.UserCreation) (*int64, error)
 	UpdateUserApiUsc(id int, req *requests.PayloadUserCreation) error
+	ChangeStatusApiUsc(id int, status int) error
 	DeleteUserApiUsc(ids []int) error
 }
 
@@ -88,6 +89,37 @@ func (u *userApi) UpdateUserApi() fiber.Handler {
 		}
 
 		errUsc := u.userApiUsc.UpdateUserApiUsc(req.ID, &req)
+
+		if errUsc != nil {
+			return core.ReturnErrsForApi(c, errUsc)
+		}
+		return c.Status(fiber.StatusOK).JSON(fiber.Map{
+			"status":  1,
+			"message": "Update Successfully",
+		})
+	}
+}
+
+// update status
+func (u *userApi) ChangeStatusApi() fiber.Handler {
+	return func(c *fiber.Ctx) error {
+		var req requests.PayloadChangeStatus
+
+		if err := c.BodyParser(&req); err != nil {
+			return core.ReturnErrsForApi(c, err)
+		}
+
+		if req.ID <= 0 {
+			return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+				"error": "Invalid user ID",
+			})
+		}
+
+		if validationErr := req.Validation(c.Context()); validationErr != nil {
+			return core.ReturnErrsForApi(c, validationErr)
+		}
+
+		errUsc := u.userApiUsc.ChangeStatusApiUsc(req.ID, req.Status)
 
 		if errUsc != nil {
 			return core.ReturnErrsForApi(c, errUsc)

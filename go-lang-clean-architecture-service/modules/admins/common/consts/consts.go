@@ -1,16 +1,34 @@
 package consts
 
 const (
-	STATUS_ACTIVE   = 1
-	STATUS_INACTIVE = 2
+	STATUS_ACTIVE       = 1
+	STATUS_INACTIVE     = 2
+	STATUS_DETELE       = 3
+	STATUS_ACTIVE_STR   = "active"
+	STATUS_INACTIVE_STR = "inactive"
+	STATUS_DELETE_STR   = "deleted"
 )
 
 var (
 	StatusUserToViewCreate = []int{
 		STATUS_ACTIVE,
-		STATUS_INACTIVE}
-	MapStatus = map[int]string{
-		STATUS_ACTIVE:   "Hien",
-		STATUS_INACTIVE: "An",
+		STATUS_INACTIVE,
+		STATUS_DETELE}
+
+	StatusUserToViewStr = []string{
+		STATUS_ACTIVE_STR,
+		STATUS_INACTIVE_STR,
+		STATUS_DELETE_STR}
+
+	MapStatusInt = map[int]string{
+		STATUS_ACTIVE:   STATUS_ACTIVE_STR,
+		STATUS_INACTIVE: STATUS_INACTIVE_STR,
+		STATUS_DETELE:   STATUS_DELETE_STR,
+	}
+
+	MapStatusStr = map[string]int{
+		STATUS_ACTIVE_STR:   STATUS_ACTIVE,
+		STATUS_INACTIVE_STR: STATUS_INACTIVE,
+		STATUS_DELETE_STR:   STATUS_DETELE,
 	}
 )

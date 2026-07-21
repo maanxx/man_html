@@ -17,6 +17,7 @@ type userApi interface {
 	FindOneUserRepo(id int) (*entity.User, error)
 	InsertUserRepo(data *entity.User) (*int64, error)
 	UpdateUserRepo(id int, data *entity.User) error
+	UpdateStatusRepo(id int, status int) error
 	DeleteUserRepo(ids []int) error
 }
 
@@ -94,6 +95,17 @@ func (u *userApiUsc) UpdateUserApiUsc(id int, req *requests.PayloadUserCreation)
 	}
 
 	err := u.userApi.UpdateUserRepo(id, &user)
+
+	if err != nil {
+		return errs.ErrDataNotFound
+	}
+
+	return nil
+}
+
+// udpate status
+func (u *userApiUsc) ChangeStatusApiUsc(id int, status int) error {
+	err := u.userApi.UpdateStatusRepo(id, status)
 
 	if err != nil {
 		return errs.ErrDataNotFound

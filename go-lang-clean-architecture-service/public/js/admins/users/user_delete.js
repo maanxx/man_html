@@ -1,5 +1,9 @@
 import Alert from "/static/js/common/alert.js";
-import { handleAjaxError } from "/static/js/common/helpers.js";
+import {
+  handleAjaxError,
+  loader,
+  getCookie,
+} from "/static/js/common/helpers.js";
 
 var $listID = {};
 var $idsArr = [];
@@ -7,20 +11,19 @@ var $idsArr = [];
 const deleteUser = function () {
   const handleDeleteUser = function () {
     var isDeleteUser = 0;
-    $(document).on("click", "#delete-item-btn", function (evt) {
+    $(document).on("click", ".delete-btn", function (evt) {
       isDeleteUser = 0;
-      var tr = $(this).closest("tr");
-      console.log("===============================================", tr);
+      // var tr = $(this).closest("tr");
+      // var $rowData = user_dt.row(tr).data();
+      // var $dataID = $rowData._id;
 
-      var $rowData = user_dt.row(tr).data();
-      console.log("===============================================", $rowData);
+      var $dataID = parseInt($(this).attr("data-id"));
 
-      var $dataID = $rowData._id;
-      console.log("===============================================", $dataID);
-
-      $idsArr = [$dataID.toString()];
+      $idsArr = [$dataID];
       $listID = {}; // Clear existing items
       $listID[$dataID] = 1;
+
+      $("#delete_modal").modal("show");
     });
 
     $("#delete_modal").on("shown.bs.modal", function (e) {
@@ -28,7 +31,7 @@ const deleteUser = function () {
     });
 
     // Delete Roles
-    $(document).on("click", "#delete_record", function (evt) {
+    $(document).on("click", "#btn-submit-delete", function (evt) {
       evt.preventDefault();
       if (isDeleteUser == 1) {
         return;
@@ -42,8 +45,9 @@ const deleteUser = function () {
       if (checked.length > 0) {
         $idsArr.length = 0;
         checked.forEach(function (check) {
-          $idsArr.push(check.value);
-          $listID[check.value] = 1;
+          var checkVal = parseInt(check.value);
+          $idsArr.push(checkVal);
+          $listID[checkVal] = 1;
         });
       }
       loader();
@@ -59,24 +63,16 @@ const deleteUser = function () {
             "X-CSRF-Token": getCookie("csrf_"),
           },
           success: function (res) {
-            Alert.success(res.data.msg);
+            Alert.success(res.message);
             $("#delete_modal").modal("hide");
-            var $res = [];
-            var allRows = user_dt.rows().data().toArray();
-            allRows.forEach(function ($allRow) {
-              if (!$listID.hasOwnProperty($allRow._id)) {
-                $res.push($allRow);
-              }
-            });
-            user_dt.rows().remove().draw();
-            user_dt.rows.add($res).draw();
+            $("#user_table").DataTable().ajax.reload(null, false);
             $("#remove-actions").hide();
             checkAll.checked = false;
 
             $idsArr.forEach(function ($row) {
               var $detailID = $("#info_status").data("id");
               if ($detailID == $row) {
-                var data = user_dt.row(0).data();
+                var data = $("#user_table").DataTable().row(0).data();
                 detailUser(data);
               }
             });

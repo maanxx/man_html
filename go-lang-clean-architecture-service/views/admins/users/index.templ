@@ -1,6 +1,7 @@
 package users
 
 import (
+	"app/modules/admins/common/consts"
 	"app/pkg/golangviet/templates"
 	"app/views/admins/users/components/modals"
 	"app/views/layouts"
@@ -73,7 +74,7 @@ templ Index() {
 												<th data-key="t-action">Action</th>
 												<th class="text-left">NO.</th>
 												<th>Avatar</th>
-												<th data-key="t-fullname">Full name</th>
+												<th>Full name</th>
 												<th data-key="t-status">Status</th>
 											</tr>
 										</thead>
@@ -90,6 +91,7 @@ templ Index() {
 			@modals.CreateUserModal()
 			@modals.DeleteUserModal()
 		</div>
+		<input type="hidden" id="statusList" value={ templates.JsonString(consts.StatusUserToViewStr) }/>
 	}
 }
 

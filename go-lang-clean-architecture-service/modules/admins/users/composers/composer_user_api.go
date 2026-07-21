@@ -16,6 +16,7 @@ type composerUserApi interface {
 	FindUserApi() fiber.Handler
 	InsertUserApi() fiber.Handler
 	UpdateUserApi() fiber.Handler
+	ChangeStatusApi() fiber.Handler
 	DeleteUserApi() fiber.Handler
 }
 

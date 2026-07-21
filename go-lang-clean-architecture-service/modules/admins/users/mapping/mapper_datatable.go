@@ -1,6 +1,7 @@
 package mapping
 
 import (
+	"app/modules/admins/common/consts"
 	"app/modules/admins/users/entity"
 	"app/modules/admins/users/transport/respones"
 	"fmt"
@@ -15,18 +16,26 @@ func MapperDatatable(users *[]entity.User) *[]respones.DataTableUserResp {
 
 	for _, v := range *users {
 		user := respones.DataTableUserResp{
-			ID:     v.ID,
-			Name:   v.FullName,
-			Avatar: v.Image,
-			Custom: fmt.Sprintf(`<a id="delete-item-btn" href="/admins/users/edit/%d" class="btn btn-sm btn-soft-info edit-btn"><i class="ri-pencil-fill"></i></a>
-                    <button class="btn btn-sm btn-soft-danger delete-btn" data-id="%d"><i class="ri-delete-bin-fill"></i></button>`, v.ID, v.ID),
+			ID:        v.ID,
+			Name:      v.FullName,
+			LastName:  v.LastName,
+			FirstName: v.FirstName,
+			Avatar:    v.Image,
+			Email:     v.Email,
+			Custom: fmt.Sprintf(`<a href="/admins/users/edit/%d" class="btn btn-sm btn-soft-info edit-btn"><i class="ri-pencil-fill"></i></a>
+                    <button  id="delete-item-btn" class="btn btn-sm btn-soft-danger delete-btn" data-id="%d"><i class="ri-delete-bin-fill"></i></button>`, v.ID, v.ID),
 		}
 
-		if v.Status == 1 {
-			user.Status = "Active"
-		} else if v.Status == 2 {
-			user.Status = "Inactive"
-		}
+		// switch v.Status {
+		// case 1:
+		// 	user.Status = "active"
+		// case 2:
+		// 	user.Status = "inactive"
+		// case 3:
+		// 	user.Status = "deleted"
+		// }
+
+		user.Status = consts.MapStatusInt[v.Status]
 
 		result = append(result, user)
 	}

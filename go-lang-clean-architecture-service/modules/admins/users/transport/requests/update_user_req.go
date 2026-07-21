@@ -47,7 +47,7 @@ func (req *PayloadUserCreation) Validation(ctx context.Context) []*string {
 		return validationErrors
 	}
 
-	req.StatusStr = consts.MapStatus[req.Status]
+	req.StatusStr = consts.MapStatusInt[req.Status]
 
 	req.LastName = strings.TrimSpace(req.LastName)
 	req.FirstName = strings.TrimSpace(req.FirstName)

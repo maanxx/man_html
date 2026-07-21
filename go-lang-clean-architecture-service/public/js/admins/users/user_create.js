@@ -17,7 +17,6 @@ const userCreate = function () {
         dataObj[kv.name] = kv.value;
       });
 
-      // dataObj.status = 3
       if (dataObj.status) {
         dataObj.status = parseInt(dataObj.status, 10);
       }

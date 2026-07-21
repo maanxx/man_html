@@ -19,8 +19,6 @@ type UserCreation struct {
 	StatusStr string `json:"-"`
 }
 
-
-
 func (req *UserCreation) Validation(ctx context.Context) []*string {
 	validation := validator.New()
 	validation.RegisterValidation("ruleStatusUserCreate", rules.RuleStatusUserCreate)
@@ -48,7 +46,7 @@ func (req *UserCreation) Validation(ctx context.Context) []*string {
 		return validationErrors
 	}
 
-	req.StatusStr = consts.MapStatus[req.Status]
+	req.StatusStr = consts.MapStatusInt[req.Status]
 
 	req.LastName = strings.TrimSpace(req.LastName)
 	req.FirstName = strings.TrimSpace(req.FirstName)
@@ -56,5 +54,3 @@ func (req *UserCreation) Validation(ctx context.Context) []*string {
 
 	return nil
 }
-
-
