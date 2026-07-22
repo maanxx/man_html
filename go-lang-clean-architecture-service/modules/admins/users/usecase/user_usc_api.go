@@ -5,6 +5,8 @@ import (
 	"app/modules/admins/users/mapping"
 	"app/modules/admins/users/transport/requests"
 	"app/modules/admins/users/transport/respones"
+	"app/pkg/golangviet/utils"
+	"context"
 	"fmt"
 	"strings"
 
@@ -13,6 +15,7 @@ import (
 
 // repo -> usc
 type userApi interface {
+	FindUserDatatableRepo(ctx context.Context, filter *utils.Filters) ([]*entity.User, error)
 	FindUserRepo() (*[]entity.User, error)
 	FindOneUserRepo(id int) (*entity.User, error)
 	InsertUserRepo(data *entity.User) (*int64, error)
@@ -54,7 +57,7 @@ func (u *userApiUsc) InsertUserApiUsc(req *requests.UserCreation) (*int64, error
 
 // read
 func (u *userApiUsc) FindUserApiUsc() (*[]respones.DataTableUserResp, error) {
-	data, err := u.userApi.FindUserRepo()
+	_, err := u.userApi.FindUserRepo()
 
 	if err != nil {
 		if err == errs.ErrRecordNotFound {
@@ -63,12 +66,40 @@ func (u *userApiUsc) FindUserApiUsc() (*[]respones.DataTableUserResp, error) {
 		return nil, err
 	}
 
-	if data == nil {
-		return nil, nil
+	return nil, nil
+}
+
+// read
+func (u *userApiUsc) FindListDatatableUserApiUsc(ctx context.Context, req *requests.ListDatatableUserReq) (*respones.ListDatatableUserResp, error) {
+	limit := req.Length
+
+	conds := mapping.MapperCondListDatatableUser(req)
+
+	filter := utils.Filters{
+		Conds:    &conds,
+		Offset:   req.Start,
+		PageSize: limit,
 	}
+
+	data, err := u.userApi.FindUserDatatableRepo(ctx, &filter)
+
+	if err != nil {
+		if err == errs.ErrInternalServer {
+			return nil, nil
+		}
+		return nil, err
+	}
+
 	result := mapping.MapperDatatable(data)
 
-	return result, nil
+	userDatatable := &respones.ListDatatableUserResp{
+		Draw:            req.Draw,
+		RecordsTotal:    20,
+		RecordsFiltered: 10,
+		Data:            result,
+	}
+
+	return userDatatable, nil
 }
 
 // read by id

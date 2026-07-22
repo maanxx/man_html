@@ -17,32 +17,38 @@ var statusColors = {
   inactive: "bg-primary",
   deleted: "bg-danger",
 };
-
-var tempUpdateData;
+var listData = {};
 
 const userList = function () {
   const initial = function () {
-    // window.user_dt = $("#user_table").DataTable({
-
     user_dt = $("#user_table").DataTable({
+      serverSide: true,
       processing: true,
       ajax: {
         url: "/api/admins/users/datatable",
         type: "POST",
-      },
-      dataSrc: function (response) {
-        console.log(response);
-
-        if (!response.data) {
-          return [];
-        }
-        return response.data;
+        dataType: "json",
+        data: function (d) {
+          d = { ...d, ...listData };
+          return d;
+        },
+        dataSrc: function (response) {
+          if (!response.data) {
+            return [];
+          }
+          return response.data;
+        },
       },
       columns: [
         {
           render: function (data, type, row) {
             return checkBtnDatatable(row.id);
           },
+        },
+        {
+          data: "status",
+          visible: false,
+          searchable: true,
         },
         {
           data: "custom",
@@ -52,7 +58,7 @@ const userList = function () {
         {
           data: null,
           render: function (data, type, row, meta) {
-            return meta.row + meta.settings._iDisplayStart + 1;
+            return meta.row + 1;
           },
         },
 
@@ -82,6 +88,10 @@ const userList = function () {
           },
         },
       ],
+    });
+
+    $(document).on("input", "#inputSearch", function () {
+      user_dt.search($("#inputSearch").val()).draw();
     });
 
     var checkAll = document.getElementById("checkAll");
@@ -115,19 +125,9 @@ const userList = function () {
 
     user_dt.on("click", ".change_status", function (e) {
       e.preventDefault();
-
       let newStatusStr = $(this).data("status");
-
       let rowData = user_dt.row($(this).closest("tr")).index();
-
       processModalNotiUpdateStatus(newStatusStr, rowData);
-
-      // let userId = rowData.id;
-      // tempUpdateData = rowData;
-      // $("#update_status_modal").remove();
-      // let modalHtml = modalNotiUpdateStatus(newStatusStr, userId);
-      // $("body").append(modalHtml);
-      // $("#update_status_modal").modal("show");
     });
 
     $(document).on("click", "#update_status", function (e) {
@@ -148,7 +148,6 @@ const userList = function () {
       var $statusInt = 1;
       if ($status === "inactive") $statusInt = 2;
       if ($status === "deleted") $statusInt = 3;
-
       $.ajax({
         url: "/api/admins/users/update-status",
         type: "PATCH",
@@ -169,10 +168,25 @@ const userList = function () {
       $("#update_status_modal").modal("hide");
     });
   };
+  const filterStatus = function () {
+    $("#filter-data").on("change", function () {
+      let statusVal = $(this).val();
+      if (statusVal === "") {
+        user_dt.column(1).search("").draw();
+      } else {
+        user_dt
+          .column(1)
+          .search("^" + statusVal + "$", true, false)
+          .draw();
+      }
+    });
+  };
+
   return {
     init: function () {
       initStatusTemplates();
       initial();
+      filterStatus();
     },
   };
 };

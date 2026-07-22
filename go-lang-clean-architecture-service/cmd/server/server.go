@@ -58,7 +58,5 @@ var ServerCmd = &cobra.Command{
 	if err := appFiber.Listen(fmt.Sprintf(":%d", fiberComp.GetPort())); err != nil {
 		logSrv.Fatal(err)
 	}
-
-	
   },
 }

@@ -2,7 +2,6 @@ package users
 
 import (
 	"app/modules/admins/users/composers"
-	"fmt"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/teoit/gosctx"
@@ -16,7 +15,6 @@ func SetupRoutesUser(app *fiber.App, serviceCtx gosctx.ServiceContext) {
 
 	group := app.Group("/admins/users")
 	{
-		fmt.Println(group)
 		comp := composers.ComposerUserService(serviceCtx)
 		group.Get("/list", comp.FindUserHdl()).Name("ecommerce.users.list")
 		group.Get("/edit/:id", comp.UpdateUserViewHdl()).Name("ecommerce.users.edit")

@@ -1,9 +1,12 @@
 package repository
 
 import (
+	"app/modules/admins/common/errs"
 	"app/modules/admins/users/entity"
+	"app/pkg/golangviet/generics"
+	"app/pkg/golangviet/utils"
+	"context"
 
-	"github.com/teoit/gosctx/component/errs"
 	"gorm.io/gorm"
 )
 
@@ -41,6 +44,11 @@ func (s *userRepo) FindUserRepo() (*[]entity.User, error) {
 	}
 
 	return &users, nil
+}
+
+func (s *userRepo) FindUserDatatableRepo(ctx context.Context, filter *utils.Filters) ([]*entity.User, error) {
+	tableName := entity.User{}.TableName()
+	return generics.FindGeneric[entity.User](ctx, s.db, tableName, filter)
 }
 
 // read by id

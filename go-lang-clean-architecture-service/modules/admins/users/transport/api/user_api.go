@@ -3,6 +3,7 @@ package api
 import (
 	"app/modules/admins/users/transport/requests"
 	"app/modules/admins/users/transport/respones"
+	"context"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/teoit/gosctx/core"
@@ -10,6 +11,7 @@ import (
 
 type userApiUsc interface {
 	FindUserApiUsc() (*[]respones.DataTableUserResp, error)
+	FindListDatatableUserApiUsc(ctx context.Context, req *requests.ListDatatableUserReq) (*respones.ListDatatableUserResp, error)
 	InsertUserApiUsc(req *requests.UserCreation) (*int64, error)
 	UpdateUserApiUsc(id int, req *requests.PayloadUserCreation) error
 	ChangeStatusApiUsc(id int, status int) error
@@ -54,18 +56,39 @@ func (u *userApi) InsertUserApi() fiber.Handler {
 }
 
 // read
+// func (u *userApi) FindUserApi() fiber.Handler {
+// 	return func(c *fiber.Ctx) error {
+// 		users, err := u.userApiUsc.FindUserApiUsc()
+// 		if err != nil {
+// 			return c.JSON(fiber.Map{
+// 				"data": "",
+// 			})
+// 		}
+
+// 		return c.JSON(fiber.Map{
+// 			"data": users,
+// 		})
+// 	}
+// }
+
 func (u *userApi) FindUserApi() fiber.Handler {
 	return func(c *fiber.Ctx) error {
-		users, err := u.userApiUsc.FindUserApiUsc()
-		if err != nil {
-			return c.JSON(fiber.Map{
-				"data": "",
+		var req requests.ListDatatableUserReq
+
+		if err := c.BodyParser(&req); err != nil {
+			return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+				"error": "Invalid data!",
 			})
 		}
 
-		return c.JSON(fiber.Map{
-			"data": users,
-		})
+		resp, err := u.userApiUsc.FindListDatatableUserApiUsc(c.Context(), &req)
+
+		if err != nil {
+			return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+				"error": "Server error",
+			})
+		}
+		return c.JSON(resp)
 	}
 }
 

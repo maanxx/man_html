@@ -11,3 +11,5 @@ server:
 	templ generate && go run main.go server
 pubsub:
 	go run main.go pubsub
+dev:
+	air

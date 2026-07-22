@@ -7,14 +7,14 @@ import (
 	"fmt"
 )
 
-func MapperDatatable(users *[]entity.User) *[]respones.DataTableUserResp {
+func MapperDatatable(users []*entity.User) *[]respones.DataTableUserResp {
 	var result []respones.DataTableUserResp
 
 	if users == nil {
 		return nil
 	}
 
-	for _, v := range *users {
+	for _, v := range users {
 		user := respones.DataTableUserResp{
 			ID:        v.ID,
 			Name:      v.FullName,
